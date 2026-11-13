@@ -1,0 +1,47 @@
+{
+  "households": {
+    "keys": [
+      "household_id"
+    ],
+    "columns": [
+      "household_id",
+      "member_ids",
+      "home_village"
+    ]
+  },
+  "moves": {
+    "keys": [
+      "move_id"
+    ],
+    "columns": [
+      "move_id",
+      "household_id",
+      "from_state",
+      "to_state",
+      "time_min",
+      "time_max",
+      "known_at"
+    ]
+  },
+  "shelters": {
+    "keys": [
+      "shelter_id"
+    ],
+    "columns": [
+      "shelter_id",
+      "meal_cutoff",
+      "capacity"
+    ]
+  },
+  "risk_windows": {
+    "keys": [
+      "risk_id"
+    ],
+    "columns": [
+      "risk_id",
+      "village_id",
+      "start",
+      "end"
+    ]
+  }
+}
