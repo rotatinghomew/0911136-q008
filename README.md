@@ -16,6 +16,31 @@ python3 -m coverage_review.runner --output /tmp/coverage_review-summary.json
 
 当前能力是源码 `analysis.py` 定义的摘要，不会自动给出其他统计推断。输出中的 scope 说明边界，sources 记录资料依据。
 
+## 动态在住、往返与暴露分析
+
+`dynamic_summary`（实现于 `coverage_review/timeline.py`）在保留现行摘要的同时，从家庭迁移事件构建：
+
+- `occupancy_timeline`：随时段变化的在住规模，家庭不可拆分，每个时段给确定/可能家庭集合与名册、去重两套人数上下界；
+- `meal_planning`：按安置点餐食截点分别给“全证据视图”和“截点可知视图”，迟到登记在后者中排除但始终可见，用于估算今晚餐食份数区间；
+- `round_trip_totals`：按家庭统计撤离与返家次数（同一家庭重复撤离不重复计人），保留全部 move_id；
+- `risk_exposure_totals`：home 状态与本村风险窗交集的暴露秒数上下界；
+- `lost_follow_up`：失去后续记录家庭的有依据人数范围 `[0, 家庭人数]`，不延续末状态；
+- `issues`：身份冲突、矛盾轨迹、时间不确定、迟到登记、失联、未登记安置点全部显式列示；
+- `trace_index` 与 `trace_household`：从任何汇总反向追回支撑它的家庭、事件与质量问题。
+
+分析不自动补出“最顺”的路线：迁移只知发生在 `[time_min, time_max]` 闭区间内，区间内只给可能状态集合。语义边界见 `docs/data-contract.md`。
+
+## 资料修订对账
+
+提供上一代完整资料文件即可区分新增需求与旧账更正：
+
+```sh
+python3 -m coverage_review.runner --dataset fixtures/dataset-revised.json \
+  --baseline fixtures/dataset.json --output /tmp/coverage_review-revised.json
+```
+
+报告中的 `revisions` 把差异分为 `new_demand`（新家庭、新成员、旧观测时域之后的新撤离）与 `old_debt_corrections`（补登、撤回、字段修订、名册纠正、矛盾消除），并给两套餐食视图下的需求变化及贡献家庭。同 generation 内容改写已被供数端拒绝，对账要求两代 generation 不同。
+
 ## 分开运行供数与应用
 
 ```sh

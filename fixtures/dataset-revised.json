@@ -1,0 +1,328 @@
+{
+  "generation": "domain-8-v2",
+  "tables": {
+    "households": [
+      {
+        "household_id": "h0",
+        "member_ids": [
+          "person-0",
+          "person-1",
+          "person-2"
+        ],
+        "home_village": "v0"
+      },
+      {
+        "household_id": "h1",
+        "member_ids": [
+          "person-3",
+          "person-4",
+          "person-5"
+        ],
+        "home_village": "v1"
+      },
+      {
+        "household_id": "h2",
+        "member_ids": [
+          "person-6",
+          "person-7",
+          "person-8"
+        ],
+        "home_village": "v2"
+      },
+      {
+        "household_id": "h3",
+        "member_ids": [
+          "person-9",
+          "person-10",
+          "person-11"
+        ],
+        "home_village": "v0"
+      },
+      {
+        "household_id": "h4",
+        "member_ids": [
+          "person-12",
+          "person-13",
+          "person-14"
+        ],
+        "home_village": "v1"
+      },
+      {
+        "household_id": "h5",
+        "member_ids": [
+          "person-15",
+          "person-16",
+          "person-17"
+        ],
+        "home_village": "v2"
+      },
+      {
+        "household_id": "h6",
+        "member_ids": [
+          "person-18",
+          "person-19",
+          "person-20"
+        ],
+        "home_village": "v0"
+      },
+      {
+        "household_id": "h7",
+        "member_ids": [
+          "person-21",
+          "person-22",
+          "person-23"
+        ],
+        "home_village": "v1"
+      },
+      {
+        "household_id": "h8",
+        "member_ids": [
+          "person-24",
+          "person-25",
+          "person-26"
+        ],
+        "home_village": "v2"
+      },
+      {
+        "household_id": "h9",
+        "member_ids": [
+          "person-27",
+          "person-28",
+          "person-29",
+          "person-0"
+        ],
+        "home_village": "v0"
+      },
+      {
+        "household_id": "h10",
+        "member_ids": [
+          "person-30",
+          "person-31"
+        ],
+        "home_village": "v0"
+      }
+    ],
+    "moves": [
+      {
+        "move_id": "m0-a",
+        "household_id": "h0",
+        "from_state": "home",
+        "to_state": "shelter:a",
+        "time_min": "2025-06-01T16:00:00+00:00",
+        "time_max": "2025-06-01T17:00:00+00:00",
+        "known_at": "2025-06-01T18:00:00+00:00"
+      },
+      {
+        "move_id": "m1-a",
+        "household_id": "h1",
+        "from_state": "home",
+        "to_state": "shelter:a",
+        "time_min": "2025-06-01T16:01:00+00:00",
+        "time_max": "2025-06-01T17:01:00+00:00",
+        "known_at": "2025-06-01T18:00:00+00:00"
+      },
+      {
+        "move_id": "m1-b",
+        "household_id": "h1",
+        "from_state": "shelter:a",
+        "to_state": "home",
+        "time_min": "2025-06-02T06:00:00+00:00",
+        "time_max": "2025-06-02T08:00:00+00:00",
+        "known_at": "2025-06-03T12:00:00+00:00"
+      },
+      {
+        "move_id": "m1-c",
+        "household_id": "h1",
+        "from_state": "home",
+        "to_state": "shelter:a",
+        "time_min": "2025-06-02T08:00:00+00:00",
+        "time_max": "2025-06-02T09:00:00+00:00",
+        "known_at": "2025-06-03T12:00:00+00:00"
+      },
+      {
+        "move_id": "m2-a",
+        "household_id": "h2",
+        "from_state": "home",
+        "to_state": "shelter:a",
+        "time_min": "2025-06-01T16:02:00+00:00",
+        "time_max": "2025-06-01T17:02:00+00:00",
+        "known_at": "2025-06-01T18:00:00+00:00"
+      },
+      {
+        "move_id": "m2-b",
+        "household_id": "h2",
+        "from_state": "shelter:a",
+        "to_state": "home",
+        "time_min": "2025-06-02T08:00:00+00:00",
+        "time_max": "2025-06-02T10:00:00+00:00",
+        "known_at": "2025-06-03T12:00:00+00:00"
+      },
+      {
+        "move_id": "m3-a",
+        "household_id": "h3",
+        "from_state": "home",
+        "to_state": "shelter:a",
+        "time_min": "2025-06-01T16:03:00+00:00",
+        "time_max": "2025-06-01T17:03:00+00:00",
+        "known_at": "2025-06-01T18:00:00+00:00"
+      },
+      {
+        "move_id": "m4-a",
+        "household_id": "h4",
+        "from_state": "home",
+        "to_state": "shelter:a",
+        "time_min": "2025-06-01T16:04:00+00:00",
+        "time_max": "2025-06-01T17:04:00+00:00",
+        "known_at": "2025-06-01T18:00:00+00:00"
+      },
+      {
+        "move_id": "m4-b",
+        "household_id": "h4",
+        "from_state": "shelter:a",
+        "to_state": "home",
+        "time_min": "2025-06-02T08:00:00+00:00",
+        "time_max": "2025-06-02T10:00:00+00:00",
+        "known_at": "2025-06-03T12:00:00+00:00"
+      },
+      {
+        "move_id": "m4-c",
+        "household_id": "h4",
+        "from_state": "home",
+        "to_state": "shelter:a",
+        "time_min": "2025-06-02T09:00:00+00:00",
+        "time_max": "2025-06-02T12:00:00+00:00",
+        "known_at": "2025-06-03T12:00:00+00:00"
+      },
+      {
+        "move_id": "m5-a",
+        "household_id": "h5",
+        "from_state": "home",
+        "to_state": "shelter:a",
+        "time_min": "2025-06-01T16:05:00+00:00",
+        "time_max": "2025-06-01T17:05:00+00:00",
+        "known_at": "2025-06-01T18:00:00+00:00"
+      },
+      {
+        "move_id": "m5-b",
+        "household_id": "h5",
+        "from_state": "shelter:a",
+        "to_state": "home",
+        "time_min": "2025-06-02T08:00:00+00:00",
+        "time_max": "2025-06-02T10:00:00+00:00",
+        "known_at": "2025-06-03T12:00:00+00:00"
+      },
+      {
+        "move_id": "m6-a",
+        "household_id": "h6",
+        "from_state": "home",
+        "to_state": "shelter:a",
+        "time_min": "2025-06-01T16:06:00+00:00",
+        "time_max": "2025-06-01T17:06:00+00:00",
+        "known_at": "2025-06-01T18:00:00+00:00"
+      },
+      {
+        "move_id": "m7-a",
+        "household_id": "h7",
+        "from_state": "home",
+        "to_state": "shelter:a",
+        "time_min": "2025-06-01T16:07:00+00:00",
+        "time_max": "2025-06-01T17:07:00+00:00",
+        "known_at": "2025-06-01T18:00:00+00:00"
+      },
+      {
+        "move_id": "m7-b",
+        "household_id": "h7",
+        "from_state": "shelter:a",
+        "to_state": "home",
+        "time_min": "2025-06-02T08:00:00+00:00",
+        "time_max": "2025-06-02T10:00:00+00:00",
+        "known_at": "2025-06-03T12:00:00+00:00"
+      },
+      {
+        "move_id": "m7-c",
+        "household_id": "h7",
+        "from_state": "home",
+        "to_state": "shelter:a",
+        "time_min": "2025-06-02T09:00:00+00:00",
+        "time_max": "2025-06-02T12:00:00+00:00",
+        "known_at": "2025-06-03T12:00:00+00:00"
+      },
+      {
+        "move_id": "m8-a",
+        "household_id": "h8",
+        "from_state": "home",
+        "to_state": "shelter:a",
+        "time_min": "2025-06-01T16:08:00+00:00",
+        "time_max": "2025-06-01T17:08:00+00:00",
+        "known_at": "2025-06-01T18:00:00+00:00"
+      },
+      {
+        "move_id": "m8-b",
+        "household_id": "h8",
+        "from_state": "shelter:a",
+        "to_state": "home",
+        "time_min": "2025-06-02T08:00:00+00:00",
+        "time_max": "2025-06-02T10:00:00+00:00",
+        "known_at": "2025-06-03T12:00:00+00:00"
+      },
+      {
+        "move_id": "m9-a",
+        "household_id": "h9",
+        "from_state": "home",
+        "to_state": "shelter:a",
+        "time_min": "2025-06-01T16:09:00+00:00",
+        "time_max": "2025-06-01T17:09:00+00:00",
+        "known_at": "2025-06-01T18:00:00+00:00"
+      },
+      {
+        "move_id": "m0-b",
+        "household_id": "h0",
+        "from_state": "shelter:a",
+        "to_state": "home",
+        "time_min": "2025-06-02T10:00:00+00:00",
+        "time_max": "2025-06-02T10:30:00+00:00",
+        "known_at": "2025-06-02T12:30:00+00:00"
+      },
+      {
+        "move_id": "m10-a",
+        "household_id": "h10",
+        "from_state": "home",
+        "to_state": "shelter:a",
+        "time_min": "2025-06-02T13:00:00+00:00",
+        "time_max": "2025-06-02T14:00:00+00:00",
+        "known_at": "2025-06-02T15:00:00+00:00"
+      }
+    ],
+    "shelters": [
+      {
+        "shelter_id": "a",
+        "meal_cutoff": "2025-06-02T11:00:00+00:00",
+        "capacity": 50
+      }
+    ],
+    "risk_windows": [
+      {
+        "risk_id": "r0",
+        "village_id": "v0",
+        "start": "2025-06-01T14:00:00+00:00",
+        "end": "2025-06-03T12:00:00+00:00"
+      },
+      {
+        "risk_id": "r1",
+        "village_id": "v1",
+        "start": "2025-06-01T14:00:00+00:00",
+        "end": "2025-06-03T12:00:00+00:00"
+      },
+      {
+        "risk_id": "r2",
+        "village_id": "v2",
+        "start": "2025-06-01T14:00:00+00:00",
+        "end": "2025-06-03T12:00:00+00:00"
+      }
+    ]
+  },
+  "metadata": {
+    "kind": "本地合成领域资料",
+    "cutoff": "2025-09-09T00:00:00+00:00"
+  }
+}

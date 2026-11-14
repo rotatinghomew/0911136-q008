@@ -6,7 +6,22 @@
 
 ## 现行摘要
 
-`coverage_review/analysis.py` 生成现行资料摘要。源码和运行结果中的 scope 说明其统计边界，不能把未提供的推断当成已有能力。
+`coverage_review/analysis.py` 生成现行资料摘要。源码和运行结果中的 scope 说明其统计边界，不能把未提供的推断当成已有能力。`summarize` 保留原始家庭与迁移记录摘要；`dynamic_summary` 在其外增加 `coverage_review/timeline.py` 的动态分析，并通过 `coverage_review/revisions.py` 支持两代资料对账。
+
+## 动态在住分析的语义边界
+
+动态分析只依据家庭迁移区间，不补造唯一轨迹，所有输出都可经 `trace_index` 与 `trace_household` 追回支撑的家庭与事件：
+
+* **时段在住规模**：时间轴由全部迁移的 `time_min`/`time_max` 端点切分。事件只知发生在闭区间内，区间内部（含右端点）家庭状态只能给“可能状态集合”，确定状态为 `null`；零宽事件（两端点相同）在该时刻视为完成。家庭在事件之间、且之后仍有事件的时段保持确定状态；家庭最后一条事件之后再无证据的尾段（失去后续记录），末状态不延续为确定事实，只保留为可能。
+* **失联人数范围**：`lost_follow_up` 对失去后续记录的家庭给 `person_count_range = [0, 家庭人数]`，并记录最后证据事件与时点，不把末状态无限延续。无任何迁移的家庭同样按失联处理，不臆造初始状态。
+* **矛盾轨迹**：同一家庭两条迁移区间重叠（端点相接不算）或首尾状态不能衔接，记 `contradictory_trajectory`；矛盾期间只给可能状态集合，不自动选择“最顺”的一条路线。
+* **迟到登记**：`known_at` 晚于某安置点 `meal_cutoff` 的事件记 `late_registration`。餐食视图分两套：`as_of_cutoff_knowledge_view` 排除截点尚不可知的事件，`full_evidence_view` 使用全部证据；两者差异即迟到登记对排餐的影响。
+* **人数口径**：家庭不可拆分，整体计入或排除。同时给名册口径（家庭人数求和）与去重口径（稳定人员标识去重）；跨家庭重复的人员标识记 `identity_conflict`，不静默择一。未登记安置点的迁移记 `unknown_shelter_reference`，不纳入在住规模。
+* **往返与暴露**：往返次数按 home→shelter（撤离）与 shelter→home（返家）事件分别计数并保留 move_id；风险暴露时长仅统计 home 可能/确定状态与本村 `risk_windows` 的交集，给秒级上下界，不编造概率。
+
+## 资料修订对账
+
+`revisions.compare_revisions(previous, current)` 对两代完整快照按主键对账，输出 `new_demand`（新增家庭、新增成员、旧代观测时域之后的新撤离）与 `old_debt_corrections`（补登、撤回、字段修订、名册纠正、矛盾消除），并给餐食需求在两套视图下的变化及贡献家庭。迟到补登以旧代餐食截点判定，单独标记。同 generation 的内容改写由供数端拒绝，对账要求两代 generation 不同。
 
 ## 供数接口
 

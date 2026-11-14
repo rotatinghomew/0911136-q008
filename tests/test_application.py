@@ -2,11 +2,13 @@
 
 import copy
 import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
-from coverage_review.analysis import summarize
+from coverage_review.analysis import dynamic_summary, summarize
 from coverage_review.datasource import GenerationChanged, SourceClient, SourceError, Snapshot, digest
 from coverage_review.reports import load_report, package_report, save_report
 from coverage_review.service import DataRepository, load_repository, serve
@@ -110,3 +112,35 @@ class ApplicationTests(unittest.TestCase):
         with serve(repository) as address:
             with self.assertRaises(GenerationChanged):
                 SourceClient(address).read()
+
+    def test_dynamic_summary_travels_through_http_and_keeps_profile(self):
+        with serve(self.repository) as address:
+            snapshot = SourceClient(address).read()
+        summary = dynamic_summary(snapshot.tables)
+        self.assertIn("profile", summary)
+        self.assertEqual(summary["profile"], summarize(snapshot.tables))
+        self.assertIn("occupancy_timeline", summary["dynamic_analysis"])
+        self.assertIn("trace_index", summary["dynamic_analysis"])
+
+    def test_runner_emits_revision_report_and_rejects_same_generation_baseline(self):
+        root = Path(__file__).resolve().parents[1]
+        revised = root / "fixtures/dataset-revised.json"
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "report.json"
+            completed = subprocess.run(
+                [sys.executable, "-m", "coverage_review.runner",
+                 "--dataset", str(revised), "--baseline", str(root / "fixtures/dataset.json"),
+                 "--output", str(target)],
+                cwd=root, capture_output=True, text=True, timeout=60)
+            self.assertEqual(completed.returncode, 0, completed.stderr)
+            report = load_report(target)
+            self.assertEqual(report["generation"], "domain-8-v2")
+            self.assertEqual(report["summary"]["revisions"]["classification"]["counts"],
+                             {"new_demand": 2, "old_debt_correction": 3})
+            refused = subprocess.run(
+                [sys.executable, "-m", "coverage_review.runner",
+                 "--dataset", str(revised), "--baseline", str(revised),
+                 "--output", str(Path(directory) / "refused.json")],
+                cwd=root, capture_output=True, text=True, timeout=60)
+            self.assertNotEqual(refused.returncode, 0)
+            self.assertIn("generation", refused.stderr + refused.stdout)
